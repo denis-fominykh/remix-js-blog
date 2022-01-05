@@ -1,15 +1,10 @@
 import type { MetaFunction } from 'remix';
-import {
-  Meta,
-  Links,
-  Outlet,
-  Scripts,
-  LiveReload,
-  ScrollRestoration,
-} from 'remix';
+import { Outlet, Scripts, LiveReload, ScrollRestoration } from 'remix';
+
+import NavBar from '~/components/NavBar';
 
 export const meta: MetaFunction = () => {
-  return { title: 'New Remix App' };
+  return { title: 'Remix Blog App' };
 };
 
 export default function App() {
@@ -18,14 +13,14 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <Meta />
-        <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
+        <NavBar>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          {process.env.NODE_ENV === 'development' && <LiveReload />}
+        </NavBar>
       </body>
     </html>
   );

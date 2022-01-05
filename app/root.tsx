@@ -1,10 +1,22 @@
 import type { MetaFunction } from 'remix';
-import { Outlet, Scripts, LiveReload, ScrollRestoration } from 'remix';
+import { Links, Outlet, Scripts, LiveReload, ScrollRestoration } from 'remix';
+import type { LinksFunction } from 'remix';
 
 import NavBar from '~/components/NavBar';
 
+import globalStylesUrl from '~/styles/global.css';
+
 export const meta: MetaFunction = () => {
   return { title: 'Remix Blog App' };
+};
+
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: 'stylesheet',
+      href: globalStylesUrl,
+    },
+  ];
 };
 
 export default function App() {
@@ -13,6 +25,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <Links />
       </head>
       <body>
         <NavBar>

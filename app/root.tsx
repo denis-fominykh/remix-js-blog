@@ -14,7 +14,11 @@ import NavBar from '~/components/NavBar';
 import globalStylesUrl from '~/styles/global.css';
 
 export const meta: MetaFunction = () => {
-  return { title: 'Remix Blog App' };
+  const title = 'Remix Blog App';
+  const description = 'A simple blog built with Remix';
+  const keywords = 'remix, react, javascript, typescript';
+
+  return { title, description, keywords };
 };
 
 export const links: LinksFunction = () => {

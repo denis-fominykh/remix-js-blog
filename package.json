@@ -3,6 +3,9 @@
   "name": "remix-app-template",
   "description": "",
   "license": "",
+  "prisma": {
+    "seed": "node --require esbuild-register prisma/seed.ts"
+  },
   "scripts": {
     "postinstall": "remix setup node",
     "prepare": "husky install",
@@ -32,6 +35,7 @@
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
+    "esbuild-register": "^3.3.1",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",

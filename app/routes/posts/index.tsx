@@ -1,17 +1,26 @@
+import type { Post } from '@prisma/client';
 import type { LoaderFunction } from 'remix';
 import { useLoaderData, Link } from 'remix';
 
+import { db } from '~/utils/db.server';
+
 interface LoaderData {
-  posts: Array<{ id: number; title: string; body: string }>;
+  posts: Post[];
 }
 
-export const loader: LoaderFunction = () => {
+export const loader: LoaderFunction = async () => {
   const data: LoaderData = {
-    posts: [
-      { id: 1, title: 'Post 1', body: 'This is a first test post' },
-      { id: 2, title: 'Post 2', body: 'This is a second test post' },
-      { id: 3, title: 'Post 3', body: 'This is a third test post' },
-    ],
+    posts: await db.post.findMany({
+      take: 20,
+      select: {
+        id: true,
+        body: true,
+        title: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    }),
   };
 
   return data;
@@ -29,10 +38,11 @@ export default function PostItems() {
         </Link>
       </div>
       <ul className="posts-list">
-        {posts.map(({ id, title, body }) => (
+        {posts.map(({ id, title, createdAt }) => (
           <li key={id}>
             <Link to={id.toString()}>
               <h3>{title}</h3>
+              {new Date(createdAt).toLocaleString()}
             </Link>
           </li>
         ))}

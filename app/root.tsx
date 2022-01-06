@@ -6,6 +6,7 @@ import {
   Scripts,
   LiveReload,
   ScrollRestoration,
+  ErrorBoundaryComponent,
 } from 'remix';
 import type { LinksFunction } from 'remix';
 
@@ -23,6 +24,17 @@ export const meta: MetaFunction = () => {
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: globalStylesUrl }];
+};
+
+export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+  return (
+    <div>
+      <h1>Error</h1>
+      <p>{error.message}</p>
+      <p>The stack trace is:</p>
+      <pre>{error.stack}</pre>
+    </div>
+  );
 };
 
 export default function App() {

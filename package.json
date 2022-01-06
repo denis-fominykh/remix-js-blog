@@ -17,6 +17,7 @@
     "format:write": "npm run format --write"
   },
   "dependencies": {
+    "@prisma/client": "^3.7.0",
     "@remix-run/react": "^1.1.1",
     "@remix-run/serve": "^1.1.1",
     "react": "^17.0.2",
@@ -39,6 +40,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
+    "prisma": "^3.7.0",
     "typescript": "^4.1.2"
   },
   "lint-staged": {

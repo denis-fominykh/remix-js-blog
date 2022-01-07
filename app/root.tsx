@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import type { MetaFunction } from 'remix';
 import {
   Meta,
@@ -8,11 +9,15 @@ import {
   ScrollRestoration,
 } from 'remix';
 
+import StylesContext from '~/StylesContext';
+
 export const meta: MetaFunction = () => {
   return { title: 'New Remix App' };
 };
 
 export default function App() {
+  const styles = useContext(StylesContext);
+
   return (
     <html lang="en">
       <head>
@@ -20,6 +25,7 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        {styles}
       </head>
       <body>
         <Outlet />

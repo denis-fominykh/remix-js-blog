@@ -1,8 +1,5 @@
 import { Link } from 'remix';
 import type { ReactNode } from 'react';
-
-import { Navbar, LogoLink, Container } from '~/components/NavBar/styled';
-
 interface NavBarProps {
   children: ReactNode;
 }
@@ -10,15 +7,17 @@ interface NavBarProps {
 export default function NavBar({ children }: NavBarProps) {
   return (
     <>
-      <Navbar>
-        <LogoLink to="/">Remix</LogoLink>
+      <nav className="navbar">
+        <Link className="logo" to="/">
+          Remix
+        </Link>
         <ul>
           <li>
             <Link to="/people">People</Link>
           </li>
         </ul>
-      </Navbar>
-      <Container>{children}</Container>
+      </nav>
+      <div className="container">{children}</div>
     </>
   );
 }

@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import type { MetaFunction } from 'remix';
+import type { MetaFunction, LinksFunction } from 'remix';
 import {
   Meta,
   Links,
@@ -7,19 +6,33 @@ import {
   Scripts,
   LiveReload,
   ScrollRestoration,
+  ErrorBoundaryComponent,
 } from 'remix';
 
 import NavBar from '~/components/NavBar';
 
-import StylesContext from '~/StylesContext';
+import globalStylesUrl from '~/styles/global.css';
 
 export const meta: MetaFunction = () => {
   return { title: 'New Remix App' };
 };
 
-export default function App() {
-  const styles = useContext(StylesContext);
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: globalStylesUrl }];
+};
 
+export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+  return (
+    <div>
+      <h1>Error</h1>
+      <p>{error.message}</p>
+      <p>The stack trace is:</p>
+      <pre>{error.stack}</pre>
+    </div>
+  );
+};
+
+export default function App() {
   return (
     <html lang="en">
       <head>
@@ -27,7 +40,6 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
-        {styles}
       </head>
       <body>
         <NavBar>

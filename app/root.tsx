@@ -9,6 +9,8 @@ import {
   ScrollRestoration,
 } from 'remix';
 
+import NavBar from '~/components/NavBar';
+
 import StylesContext from '~/StylesContext';
 
 export const meta: MetaFunction = () => {
@@ -28,10 +30,12 @@ export default function App() {
         {styles}
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
+        <NavBar>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          {process.env.NODE_ENV === 'development' && <LiveReload />}
+        </NavBar>
       </body>
     </html>
   );

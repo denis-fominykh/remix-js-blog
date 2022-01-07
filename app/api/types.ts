@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 export type AxiosResponseSuccess<Data> = Promise<AxiosResponse<Data>>;
 
-export type SWCharacter = {
+export type GetCharacterResponseSuccess = {
   species: [];
   url: string;
   name: string;
@@ -20,6 +20,8 @@ export type SWCharacter = {
   vehicles: string[];
   starships: string[];
 };
+
+export type SWCharacter = GetCharacterResponseSuccess;
 
 export type GetPeopleResponseSuccess = {
   count: number;

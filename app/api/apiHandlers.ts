@@ -1,10 +1,21 @@
 import API_PATHS from '~/api/apiPaths';
 import { getData } from '~/api/crudHandlers';
-import { AxiosResponseSuccess, GetPeopleResponseSuccess } from '~/api/types';
+import {
+  AxiosResponseSuccess,
+  GetPeopleResponseSuccess,
+  GetCharacterResponseSuccess,
+} from '~/api/types';
 
 const API_HANDLERS = {
-  PEOPLE(): AxiosResponseSuccess<GetPeopleResponseSuccess> {
-    return getData<GetPeopleResponseSuccess>(API_PATHS.PEOPLE._);
+  PEOPLE: {
+    ALL_CHARACTERS(): AxiosResponseSuccess<GetPeopleResponseSuccess> {
+      return getData<GetPeopleResponseSuccess>(API_PATHS.PEOPLE._);
+    },
+    CHARACTER_BY_ID(
+      id: string,
+    ): AxiosResponseSuccess<GetCharacterResponseSuccess> {
+      return getData<GetCharacterResponseSuccess>(API_PATHS.PEOPLE.BY_ID(id));
+    },
   },
 };
 
